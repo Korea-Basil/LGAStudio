@@ -2,6 +2,7 @@
 bin/
 obj/
 publish/
+release/
 
 # Visual Studio and editor state
 .vs/

@@ -27,27 +27,15 @@ LGA Studio는 브라우저 알림 권한과 Windows 시작 항목을 확인하�
 
 빌드 및 실행:
 - 빌드 컴퓨터에 .NET 8 SDK를 설치합니다.
-- PowerShell에서 프로젝트 폴더로 이동합니다.
-- 다음 명령을 실행합니다.
+- PowerShell에서 프로젝트 폴더로 이동한 다음 다음 스크립트를 실행합니다.
 
-  dotnet restore
-  dotnet build -c Release
-  dotnet run
+  .\build-release.ps1
 
-단일 실행 파일 게시:
-- 다음 명령을 실행합니다.
-
-  dotnet publish -c Release
-
-- 게시 결과: bin\Release\net8.0-windows\win-x64\publish\LGAStudio.exe
+- 스크립트는 이전 bin, obj, release 폴더를 정리하고 Windows x64용 단일 파일을 게시합니다.
+- 완성 파일: release\LGAStudio.exe
+- 게시 후 bin 및 obj 폴더는 정리되며 release 폴더에는 실행 파일 하나만 남습니다.
 - 실행 컴퓨터에는 .NET 런타임을 별도로 설치할 필요가 없습니다.
 - 실행하면 Windows 관리자 권한 확인 창이 표시됩니다.
-
-게시된 파일을 쉽게 찾는 방법:
-1. 파일 탐색기에서 프로젝트 폴더를 엽니다.
-2. bin -> Release -> net8.0-windows -> win-x64 -> publish 순서대로 폴더를 엽니다.
-3. 마지막 publish 폴더 안의 LGAStudio.exe를 두 번 클릭합니다.
-   net8.0-windows와 win-x64는 폴더 이름입니다. 그대로 차례대로 열면 됩니다.
 
 
 English Guide
@@ -64,21 +52,11 @@ Safe first run:
 
 Close supported browsers normally before changing browser permission files. The application does not terminate browser processes.
 
-Build with the .NET 8 SDK:
-  dotnet restore
-  dotnet build -c Release
-  dotnet run
+Build and publish with the .NET 8 SDK:
+  .\build-release.ps1
 
-Publish a standalone Windows x64 executable:
-  dotnet publish -c Release
-
-The output is:
-  bin\Release\net8.0-windows\win-x64\publish\LGAStudio.exe
-
-To find it, open the project folder in File Explorer, then open these folders in order:
-  bin -> Release -> net8.0-windows -> win-x64 -> publish
-
-Double-click LGAStudio.exe inside the final publish folder. The names net8.0-windows and win-x64 are folder names; simply open them in order.
+The script removes previous bin, obj, and release folders, then publishes a self-contained single-file Windows x64 executable. It also removes intermediate bin and obj folders after publishing and verifies that release contains only the final executable:
+  release\LGAStudio.exe
 
 The target computer does not need the .NET runtime installed. Windows will request administrator approval when launched.
 
